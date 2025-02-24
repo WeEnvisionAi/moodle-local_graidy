@@ -22,8 +22,6 @@
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
-namespace local_graidy;
-
 require_once(__DIR__ . '/../../config.php');
 
 // Get the course ID from the URL.
