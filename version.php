@@ -28,3 +28,4 @@ $plugin->version   = 2025012708;        // The current plugin version (Date: YYY
 $plugin->requires  = 2022111800;        // Requires this Moodle version.
 $plugin->component = 'local_graidy';     // Full name of the plugin (used for diagnostics).
 $plugin->release = 'v1.0.0';
+$plugin->maturity = MATURITY_STABLE;

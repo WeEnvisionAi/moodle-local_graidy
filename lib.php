@@ -30,6 +30,9 @@ require_once($CFG->dirroot . '/course/externallib.php');
 
 /**
  * Execute the function logic to return a user token.
+ *
+ * @param int $userid The ID of the user.
+ * @return string The generated or existing token.
  */
 function local_graidy_get_or_create_token($userid) {
     global $DB;
@@ -63,6 +66,10 @@ function local_graidy_get_or_create_token($userid) {
 
 /**
  * Execute the function logic to extend the settings navigation.
+ *
+ * @param settings_navigation $settingsnav The settings navigation object.
+ * @param context $context The context of the current page.
+ * @return void
  */
 function local_graidy_extend_settings_navigation(settings_navigation $settingsnav, context $context) {
     global $PAGE;
@@ -147,7 +154,12 @@ function local_graidy_extend_settings_navigation(settings_navigation $settingsna
 }
 
 /**
- * Execute the function logic to extend the navigation on course page.
+ * Execute the function logic to extend the navigation on the course page.
+ *
+ * @param navigation_node $parentnode The parent navigation node.
+ * @param stdClass $course The course object.
+ * @param context_course $context The course context.
+ * @return void
  */
 function local_graidy_extend_navigation_course(navigation_node $parentnode, stdClass $course, context_course $context) {
     global $DB;
@@ -181,7 +193,10 @@ function local_graidy_extend_navigation_course(navigation_node $parentnode, stdC
 }
 
 /**
- * Execute the function logic to extend the navigation on assignment page.
+ * Execute the function logic to extend the navigation on the assignment page.
+ *
+ * @param \mod_assign\event\course_module_viewed $event The assignment module viewed event.
+ * @return void
  */
 function local_graidy_inject_button_in_assignment(\mod_assign\event\course_module_viewed $event) {
     global $PAGE, $DB;

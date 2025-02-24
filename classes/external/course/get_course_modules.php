@@ -23,5 +23,3 @@
  */
 
 namespace local_graidy\external\course;
-
-defined('MOODLE_INTERNAL') || die;

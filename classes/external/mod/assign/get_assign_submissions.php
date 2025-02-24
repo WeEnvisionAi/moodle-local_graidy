@@ -23,5 +23,3 @@
  */
 
 namespace local_graidy\external\mod\assign;
-
-defined('MOODLE_INTERNAL') || die;

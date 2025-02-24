@@ -39,6 +39,9 @@ require_once($CFG->dirroot . '/local/graidy/lib.php');
 class local_graidy_renderer extends plugin_renderer_base {
     /**
      * Render the "GRAiDY Grading" button inside assignments.
+     *
+     * @param int $courseid The ID of the course.
+     * @return string The HTML for the GRAiDY grading button.
      */
     public function render_graidy_button($courseid) {
         global $DB, $USER;
@@ -78,6 +81,11 @@ class local_graidy_renderer extends plugin_renderer_base {
     }
     /**
      * Render the "GRAiDY Grading" iframe.
+     *
+     * @param string $url The URL to be loaded in the iframe.
+     * @param string $width The width of the iframe (default: 100%).
+     * @param string $height The height of the iframe (default: 800px).
+     * @return string The HTML for the iframe.
      */
     public function render_iframe($url, $width = '100%', $height = '800px', ) {
         return html_writer::tag('iframe', '', [

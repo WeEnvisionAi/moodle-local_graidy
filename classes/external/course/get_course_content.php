@@ -59,6 +59,9 @@ class get_course_content extends external_api {
 
     /**
      * Execute the function logic.
+     *
+     * @param int $courseid The ID of the course.
+     * @return array The structured response containing course sections and modules.
      */
     public static function execute($courseid) {
         global $DB, $USER;
@@ -169,6 +172,8 @@ class get_course_content extends external_api {
 
     /**
      * Execute the function logic return.
+     *
+     * @return external_multiple_structure The structure defining the return value.
      */
     public static function execute_returns() {
         return new external_multiple_structure(
