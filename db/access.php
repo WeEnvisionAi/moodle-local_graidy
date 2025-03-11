@@ -24,4 +24,23 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-$capabilities = [];
+$capabilities = [
+    'local/graidy:modiframeview' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_MODULE,
+        'archetypes' => [
+            'teacher'  => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager'  => CAP_ALLOW,
+        ],
+    ],
+    'local/graidy:courseiframeview' => [
+        'captype' => 'read',
+        'contextlevel' => CONTEXT_COURSE,
+        'archetypes' => [
+            'teacher'  => CAP_ALLOW,
+            'editingteacher' => CAP_ALLOW,
+            'manager'  => CAP_ALLOW,
+        ],
+    ],
+];

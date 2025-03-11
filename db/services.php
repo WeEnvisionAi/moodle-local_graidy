@@ -183,6 +183,14 @@ $functions = [
         'capabilities' => 'mod/quiz:reviewmyattempts, mod/quiz:viewreports',
         'services'    => [MOODLE_OFFICIAL_MOBILE_SERVICE],
     ],
+    'local_graidy_mod_quiz_get_graderinfo_by_attempt' => [
+        'classname'   => 'local_graidy\external\mod\quiz\get_graderinfo_by_attempt',
+        'methodname'  => 'execute',
+        'description' => 'Retrieve graderinfo for questions in a quiz attempt.',
+        'type'        => 'read',
+        'ajax'        => true,
+        'services'    => [MOODLE_OFFICIAL_MOBILE_SERVICE],
+    ],
 ];
 
 // Defining a pre-built service with the following web services available.
@@ -211,6 +219,7 @@ $services = [
             'local_graidy_mod_quiz_get_quizzes_by_courses',
             'local_graidy_mod_quiz_get_user_attempts',
             'local_graidy_mod_quiz_get_attempt_review',
+            'local_graidy_mod_quiz_get_graderinfo_by_attempt',
         ],
 
         // If set, the external service user will need this capability to access

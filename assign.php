@@ -30,13 +30,18 @@ $sectionid = required_param('sectionid', PARAM_INT);
 $moduleid = required_param('moduleid', PARAM_INT); // Required module ID.
 $contentid = required_param('contentid', PARAM_INT);
 
-// Load the course object.
-$course = get_course($courseid);
-require_login($course);
-
 // Setup the context for this course.
 $context = context_module::instance($moduleid);
 $PAGE->set_context($context);
+
+// Ensure user has permission to view the plugin.
+if (!has_capability('local/graidy:modiframeview', $context)) {
+    throw new moodle_exception('nopermissions', 'error', '', 'view this page');
+}
+
+// Load the course object.
+$course = get_course($courseid);
+require_login($course);
 
 // Setup the page URL, title, and heading.
 $PAGE->set_url('/local/graidy/assign.php', ['courseid' => $courseid]);

@@ -33,9 +33,9 @@ $PAGE->set_context($context);
 $PAGE->set_pagelayout('standard');
 
 $baseurl = get_config('local_graidy', 'baseurl'); // Get GRAiDY Base URL.
-if (!$baseurl) {
+if (!$baseurl || empty($baseurl)) {
     echo $OUTPUT->header();
-    echo "<div class='alert alert-danger'>GRAiDY Base URL is not configured.</div>";
+    echo "<div class='alert alert-danger'>" . get_string('iframebaseurlerror', 'local_graidy') ."</div>";
     echo $OUTPUT->footer();
     exit;
 }
@@ -43,6 +43,6 @@ if (!$baseurl) {
 $iframeurl = $baseurl . "/grading?id=" . $id;
 
 echo $OUTPUT->header();
-echo "<h2>GRAiDY Grading</h2>";
+echo "<h2>" . get_string('iframeheading', 'local_graidy') . "</h2>";
 echo "<iframe src='$iframeurl' width='100%' height='800px' style='border: none;'></iframe>";
 echo $OUTPUT->footer();

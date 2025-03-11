@@ -36,8 +36,10 @@ require_login($course);
 $context = context_course::instance($courseid);
 $PAGE->set_context($context);
 
-// Setup the context for this course.
-debugging("Context type: " . $context->contextlevel . ", Instance ID: " . $context->instanceid);
+// Ensure user has permission to view the plugin.
+if (!has_capability('local/graidy:courseiframeview', $context)) {
+    throw new moodle_exception('nopermissions', 'error', '', 'view this page');
+}
 
 // Setup the page URL, title, and heading.
 $PAGE->set_url('/local/graidy/course.php', ['id' => $courseid]);

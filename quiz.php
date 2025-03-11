@@ -38,6 +38,11 @@ require_login($course);
 $context = context_module::instance($moduleid);
 $PAGE->set_context($context);
 
+// Ensure user has permission to view the plugin.
+if (!has_capability('local/graidy:modiframeview', $context)) {
+    throw new moodle_exception('nopermissions', 'error', '', 'view this page');
+}
+
 // Setup the page URL, title, and heading.
 $PAGE->set_url('/local/graidy/quiz.php', ['courseid' => $courseid]);
 // Example: You could use $course->fullname as the page heading/title.

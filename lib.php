@@ -97,16 +97,12 @@ function local_graidy_extend_settings_navigation(settings_navigation $settingsna
 
     // Check if the context is module-level.
     if ($context->contextlevel === CONTEXT_MODULE) {
-        debugging("Context is module-level.");
         if (!$PAGE->cm) {
             // Use $PAGE->set_cm() to set the course module context.
             $cm = get_coursemodule_from_id(null, $context->instanceid, 0, false, MUST_EXIST);
             $PAGE->set_cm($cm);
-            debugging("Course Module set using PAGE->set_cm(): " . $PAGE->cm->modname);
-
         }
     } else {
-        debugging("Context is not module-level.");
         return; // Exit if not module-level context.
     }
 
@@ -190,30 +186,4 @@ function local_graidy_extend_navigation_course(navigation_node $parentnode, stdC
         $url,
         navigation_node::TYPE_CUSTOM
     );
-}
-
-/**
- * Execute the function logic to extend the navigation on the assignment page.
- *
- * @param \mod_assign\event\course_module_viewed $event The assignment module viewed event.
- * @return void
- */
-function local_graidy_inject_button_in_assignment(\mod_assign\event\course_module_viewed $event) {
-    global $PAGE, $DB;
-
-    debugging('[GRAiDY] Injecting button into assignment page.', DEBUG_DEVELOPER);
-    // Get course module details from the event.
-    $cmid = $event->contextinstanceid;
-    $cm = get_coursemodule_from_id('assign', $cmid);
-
-    if (!$cm) {
-        debugging('[GRAiDY] ERROR - Could not fetch course module.', DEBUG_DEVELOPER);
-        return;
-    }
-    // Get course details.
-    $course = $DB->get_record('course', ['id' => $cm->course], '*', MUST_EXIST);
-    // Load the renderer.
-    $renderer = $PAGE->get_renderer('local_graidy');
-    // Output the button.
-    echo $renderer->render_graidy_button($course->id);
 }
