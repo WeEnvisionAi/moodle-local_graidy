@@ -23,12 +23,6 @@
  */
 
 namespace local_graidy\privacy;
-
-use core_privacy\local\metadata\collection;
-use core_privacy\local\request\contextlist;
-use core_privacy\local\request\approved_contextlist;
-use core_privacy\local\request\userlist;
-use core_privacy\local\request\approved_userlist;
 /**
  * Privacy Subsystem implementing null_provider.
  *
@@ -37,87 +31,16 @@ use core_privacy\local\request\approved_userlist;
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 class provider implements
-        \core_privacy\local\metadata\provider,
-        \core_privacy\local\request\core_userlist_provider,
-        \core_privacy\local\request\plugin\provider {
+    // This plugin does not store any personal user data.
+    \core_privacy\local\metadata\null_provider {
 
     /**
-     * Returns metadata about the data stored in this plugin.
+     * Get the language string identifier with the component's language
+     * file to explain why this plugin stores no data.
      *
-     * @param collection $collection The metadata collection to populate.
-     * @return collection The populated metadata collection.
-     */
-    public static function get_metadata(collection $collection): collection {
-        // Document stored settings (but no personal user data is stored).
-        $collection->add_database_table(
-            'local_graidy_config',
-            [
-                'baseurl' => 'privacy:metadata:local_graidy:baseurl',
-                'organizationapikey' => 'privacy:metadata:local_graidy:organizationapikey',
-            ],
-            'privacy:metadata:local_graidy'
-        );
-        return $collection;
-    }
-
-    /**
-     * This plugin does not store any personal user data.
-     *
-     * @return string The language string identifier.
+     * @return  string
      */
     public static function get_reason(): string {
-        return 'privacy:metadata:local_graidy:nopersonaldata';
+        return 'privacy:metadata';
     }
-
-    /**
-     * Get the list of contexts that contain user information for the specified user.
-     *
-     * @param   int         $userid     The user to search.
-     * @return  contextlist $contextlist  The contextlist containing the list of contexts used in this plugin.
-     */
-    public static function get_contexts_for_userid(int $userid): contextlist {
-        $contextlist = new contextlist();
-        return $contextlist;
-    }
-
-    /**
-     * Get the list of users who have data within a context.
-     *
-     * @param   userlist    $userlist   The userlist containing the list of users who have data in this context/plugin combination.
-     */
-    public static function get_users_in_context(userlist $userlist) {
-    }
-
-    /**
-     * Export all user data for the specified user, in the specified contexts.
-     *
-     * @param approved_contextlist $contextlist The approved contexts to export information for.
-     */
-    public static function export_user_data(approved_contextlist $contextlist) {
-    }
-
-    /**
-     * Delete all data for all users in the specified context.
-     *
-     * @param   \context $context The specific context to delete data for.
-     */
-    public static function delete_data_for_all_users_in_context(\context $context) {
-    }
-
-    /**
-     * Delete multiple users within a single context.
-     *
-     * @param approved_userlist $userlist The approved context and user information to delete information for.
-     */
-    public static function delete_data_for_users(approved_userlist $userlist) {
-    }
-
-    /**
-     * Delete all user data for the specified user, in the specified contexts.
-     *
-     * @param   approved_contextlist $contextlist The approved contexts and user information to delete information for.
-     */
-    public static function delete_data_for_user(approved_contextlist $contextlist) {
-    }
-
 }
