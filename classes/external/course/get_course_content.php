@@ -91,7 +91,7 @@ class get_course_content extends external_api {
 
             // Get section modules.
             $sectioninfo = $modinfo->get_section_info_all();
-            $sectionmodules = isset($sectioninfo[$section->id]) ? $sectioninfo[$section->id]->sequence : '';
+            $sectionmodules = isset($sectioninfo[$section->section]) ? $sectioninfo[$section->section]->sequence : '';
             $moduleids = explode(',', $sectionmodules);
 
             $modules = [];
