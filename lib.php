@@ -114,7 +114,7 @@ function local_graidy_extend_settings_navigation(settings_navigation $settingsna
         $courseid = $PAGE->course->id; // Course ID.
         // Fetch course sections and modules directly from the database.
         $sections = $DB->get_records_sql("
-        SELECT cs.id AS sectionid, cs.name AS sectionname, cm.id AS moduleid
+        SELECT cm.id AS moduleid, cs.id AS sectionid, cs.name AS sectionname 
         FROM {course_sections} cs
         LEFT JOIN {course_modules} cm ON cm.section = cs.id
         WHERE cs.course = :courseid
@@ -130,14 +130,13 @@ function local_graidy_extend_settings_navigation(settings_navigation $settingsna
             }
         }
 
-        if ($modulenode) {
-            // Add a custom node under the "More" tab.
+        if ($modulenode !== null) {
             $modulenode->add(
-                get_string('tab_' . $PAGE->cm->modname, 'local_graidy'), // Tab label.
+                get_string('tab_' . $PAGE->cm->modname, 'local_graidy'),
                 new moodle_url('/local/graidy/' . $PAGE->cm->modname . '.php', [
-                    'courseid' => $PAGE->course->id, // Correct course ID.
-                    'sectionid' => $PAGE->cm->section, // Correct section ID.
-                    'moduleid' => $PAGE->cm->id, // Correct module ID.
+                    'courseid' => $PAGE->course->id,
+                    'sectionid' => $PAGE->cm->section,
+                    'moduleid' => $PAGE->cm->id,
                     'contentid' => $matchingsectionid,
                     'type' => $PAGE->cm->modname,
                 ]),
@@ -145,6 +144,8 @@ function local_graidy_extend_settings_navigation(settings_navigation $settingsna
                 null,
                 'local_graidy_tab_' . $PAGE->cm->modname
             );
+        } else {
+            debugging('local_graidy: modulesettings node not found for ' . $PAGE->cm->modname);
         }
     }
 }
