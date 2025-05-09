@@ -135,7 +135,6 @@ Enhance your Moodle assessments with:
 
 For more information, visit:
 
-
 [🌐 GRAiDY Portal Help & Support](https://portal.graidy.tech/support)
 
 [🌐 GRAiDY Portal Documentation & Tutorials](https://portal.graidy.tech/support/docs)
@@ -147,3 +146,11 @@ For support or more complex inquiries, please contact customer support:
 ✉️  [info@graidy.tech](mailto:info@graidy.tech)
 
 ☎️ [+27 31 0125 253](tel:+27310125253)
+
+## Disclaimer: GRAiDY AI Marking Assistant
+
+The GRAiDY AI Marking Tool is a support system designed to assist educators in the marking and evaluation process. It analyzes student submissions to provide preliminary insights and marking suggestions. However, it is not a substitute for human judgment. All final grading decisions must be made and verified by a qualified educator.
+
+Please note that the tool processes data extracted from PDF files, which may sometimes contain complex formatting such as tables, special characters, or inconsistent layouts. These factors can affect the accuracy of data interpretation. Inconsistencies or errors may arise if the submitted content is difficult to parse or interpret programmatically.
+
+GRAiDY is intended to enhance marking efficiency, not to replace professional oversight. Human review and intervention are always required, and the educator remains fully in control of the marking process.
